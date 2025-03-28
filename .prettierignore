@@ -1,0 +1,60 @@
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+
+# Dependencies
+node_modules/
+bower_components/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Cache and logs
+.cache/
+.temp/
+.tmp/
+logs/
+*.log
+
+# Coverage and test output
+coverage/
+.nyc_output/
+.jest/
+
+# Config files often in specific formats
+.eslintrc
+.prettierrc
+
+# Generated files
+*.min.js
+*.bundle.js
+*.d.ts
+
+# Compiled/minified CSS
+*.min.css
+
+# Markdown documentation
+*.md
+
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.webp
+
+# Archives
+*.zip
+*.gz
+*.tar
+
+# Miscellaneous
+.git/
+.DS_Store

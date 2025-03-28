@@ -1,14 +1,232 @@
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
+import js from '@eslint/js'
+import reactCompilerPlugin from 'eslint-plugin-react-compiler'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import reactPlugin from 'eslint-plugin-react'
+import prettierPlugin from 'eslint-plugin-prettier/recommended'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const compat = new FlatCompat({
     baseDirectory: __dirname,
+    recommendedConfig: {},
 })
 
-const eslintConfig = [...compat.extends('next/core-web-vitals', 'next/typescript')]
+const eslintConfig = [
+    ...compat.config({
+        extends: ['next/core-web-vitals', 'next/typescript', 'next', 'prettier'],
+        rules: {
+            'react/react-in-jsx-scope': 'off',
+            'prettier/prettier': [
+                'error',
+                {
+                    printWidth: 120,
+                    tabWidth: 4,
+                    useTabs: false,
+                    singleQuote: true,
+                    trailingComma: 'all',
+                    arrowParens: 'always',
+                    bracketSpacing: true,
+                    jsxSingleQuote: false,
+                    semi: false,
+                    singleAttributePerLine: true,
+                    importOrderSeparation: true,
+                    importOrderSortSpecifiers: true,
+                    importOrderCaseInsensitive: true,
+                },
+            ],
+        },
+    }),
+    js.configs.recommended,
+    ...compat.extends('plugin:@typescript-eslint/recommended'),
+    ...compat.extends('plugin:@typescript-eslint/recommended-requiring-type-checking'),
+    prettierPlugin,
+    {
+        languageOptions: {
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+                ecmaVersion: 'latest',
+                project: './tsconfig.eslint.json',
+            },
+        },
+    },
+    {
+        files: ['**/*.{js,jsx,ts,tsx}'],
+        plugins: {
+            react: reactPlugin,
+            'react-hooks': reactHooksPlugin,
+            'react-compiler': reactCompilerPlugin,
+        },
+        rules: {
+            // * react
+            'react/boolean-prop-naming': 'error',
+            'react/button-has-type': 'error',
+            'react/default-props-match-prop-types': 'error',
+            'react/destructuring-assignment': 'error',
+            'react/display-name': 'error',
+            'react/forbid-component-props': 'error',
+            'react/forbid-dom-props': 'error',
+            'react/forbid-elements': 'error',
+            'react/forbid-foreign-prop-types': 'error',
+            'react/forbid-prop-types': 'error',
+            'react/function-component-definition': 'error',
+            'react/hook-use-state': 'error',
+            'react/iframe-missing-sandbox': 'error',
+            'react/jsx-boolean-value': 'error',
+            'react/jsx-curly-brace-presence': 'error',
+            'react/jsx-fragments': 'error',
+            'react/jsx-handler-names': 'error',
+            'react/jsx-key': 'error',
+            'react/jsx-max-depth': ['error', { max: 4 }],
+            'react/jsx-no-bind': 'error',
+            'react/jsx-no-comment-textnodes': 'error',
+            'react/jsx-no-constructed-context-values': 'error',
+            'react/jsx-no-duplicate-props': 'error',
+            'react/jsx-no-leaked-render': 'error',
+            'react/jsx-no-literals': 'error',
+            'react/jsx-no-script-url': 'error',
+            'react/jsx-no-target-blank': 'error',
+            'react/jsx-no-undef': 'error',
+            'react/jsx-no-useless-fragment': 'error',
+            'react/jsx-pascal-case': 'error',
+            'react/jsx-props-no-spreading': 'error',
+            'react/jsx-uses-react': 'error',
+            'react/jsx-uses-vars': 'error',
+            'react/no-access-state-in-setstate': 'error',
+            'react/no-array-index-key': 'error',
+            'react/no-children-prop': 'error',
+            'react/no-danger': 'error',
+            'react/no-danger-with-children': 'error',
+            'react/no-deprecated': 'error',
+            'react/no-did-mount-set-state': 'error',
+            'react/no-did-update-set-state': 'error',
+            'react/no-direct-mutation-state': 'error',
+            'react/no-find-dom-node': 'error',
+            'react/no-invalid-html-attribute': 'error',
+            'react/no-is-mounted': 'error',
+            'react/no-multi-comp': 'error',
+            'react/no-namespace': 'error',
+            'react/no-redundant-should-component-update': 'error',
+            'react/no-render-return-value': 'error',
+            'react/no-set-state': 'error',
+            'react/no-string-refs': 'error',
+            'react/no-this-in-sfc': 'error',
+            'react/no-typos': 'error',
+            'react/no-unescaped-entities': 'error',
+            'react/no-unknown-property': 'error',
+            'react/no-unsafe': 'error',
+            'react/no-unstable-nested-components': 'error',
+            'react/no-unused-class-component-methods': 'error',
+            'react/no-unused-prop-types': 'error',
+            'react/no-unused-state': 'error',
+            'react/no-will-update-set-state': 'error',
+            'react/prefer-es6-class': 'error',
+            'react/prefer-read-only-props': 'error',
+            'react/prefer-stateless-function': 'error',
+            'react/prop-types': 'error',
+            'react/require-default-props': 'error',
+            'react/require-optimization': 'error',
+            'react/require-render-return': 'error',
+            'react/self-closing-comp': 'error',
+            'react/sort-comp': 'error',
+            'react/sort-prop-types': 'error',
+            'react/state-in-constructor': 'error',
+            'react/static-property-placement': 'error',
+            'react/style-prop-object': 'error',
+            'react/void-dom-elements-no-children': 'error',
+
+            // * react-hooks
+            'react-hooks/rules-of-hooks': 'error',
+            'react-hooks/exhaustive-deps': 'error',
+
+            // * react-compiler
+            'react-compiler/react-compiler': 'error',
+
+            // * typescript
+            '@typescript-eslint/consistent-type-imports': 'error',
+            '@typescript-eslint/no-floating-promises': 'error',
+
+            // * common
+            'array-callback-return': 'error',
+            'for-direction': 'error',
+            'no-async-promise-executor': 'error',
+            'no-await-in-loop': 'error',
+            'no-const-assign': 'error',
+            'no-compare-neg-zero': 'error',
+            'no-constant-condition': 'error',
+            'no-dupe-keys': 'error',
+            'no-dupe-else-if': 'error',
+            'no-dupe-args': 'error',
+            'no-duplicate-imports': 'error',
+            'no-duplicate-case': 'error',
+            'no-func-assign': 'error',
+            'no-import-assign': 'error',
+            'no-inner-declarations': 'error',
+            'no-self-compare': 'error',
+            'no-self-assign': 'error',
+            'no-unsafe-negation': 'error',
+            'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+            'no-use-before-define': 'error',
+            'no-useless-backreference': 'error',
+            'arrow-body-style': ['error', 'as-needed'],
+            camelcase: 'error',
+            curly: ['error', 'multi-or-nest', 'consistent'],
+            'default-case-last': 'error',
+            'func-name-matching': 'error',
+            'max-nested-callbacks': ['error', 3],
+            'max-params': ['error', 3],
+            'max-lines-per-function': ['error', 30],
+            'max-lines': ['error', { max: 700, skipComments: true, skipBlankLines: true }],
+            'max-depth': ['error', 4],
+            'max-statements': ['error', 10],
+            'no-alert': 'error',
+            'no-console': 'error',
+            'no-empty-function': 'error',
+            'no-empty': 'error',
+            'no-extra-boolean-cast': 'error',
+            'no-lone-blocks': 'error',
+            'no-loop-func': 'error',
+            'no-magic-numbers': 'error',
+            'no-negated-condition': 'error',
+            'no-nested-ternary': 'error',
+            'no-param-reassign': 'error',
+            'no-return-assign': 'error',
+            'no-shadow-restricted-names': 'error',
+            'no-var': 'error',
+            'require-await': 'error',
+            'sort-imports': ['error', { ignoreDeclarationSort: true }],
+        },
+    },
+    {
+        files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}'],
+        rules: {
+            'max-lines-per-function': 'off',
+            'max-statements': 'off',
+            'no-magic-numbers': 'off',
+        },
+    },
+    {
+        files: ['**/pages/**/*.{js,jsx,ts,tsx}', '**/app/**/*.{js,jsx,ts,tsx}'],
+        rules: {
+            'max-lines-per-function': 'off',
+            'max-statements': 'off',
+        },
+    },
+    {
+        ignores: [
+            '**/node_modules/**',
+            '**/dist/**',
+            '**/build/**',
+            '**/coverage/**',
+            '**/public/**',
+            '**/next-env.d.ts',
+        ],
+    },
+]
 
 export default eslintConfig

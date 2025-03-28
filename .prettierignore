@@ -58,3 +58,6 @@ coverage/
 # Miscellaneous
 .git/
 .DS_Store
+
+# New additions
+public/

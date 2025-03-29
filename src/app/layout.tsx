@@ -1,15 +1,12 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { Providers } from '@/shared/components/providers'
+import cn from '@/shared/helpers/cn'
+import { DefaultLayout } from '@/shared/layouts'
 import '@/styles/globals.css'
+import type { Metadata } from 'next'
+import { Sora } from 'next/font/google'
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
+const sora = Sora({
+    variable: '--font-sora',
     subsets: ['latin'],
 })
 
@@ -25,8 +22,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Providers>{children}</Providers>
+            <body className={cn(sora.variable, 'antialiased')}>
+                <Providers>
+                    <DefaultLayout>{children}</DefaultLayout>
+                </Providers>
             </body>
         </html>
     )

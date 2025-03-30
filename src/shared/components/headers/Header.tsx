@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '../container'
 import NavMenu from './NavMenu'
+import ShinyText from '../animations/text-animations/ShinyText'
 
 export default function Header() {
     return (
@@ -27,9 +28,9 @@ export default function Header() {
                     <NavMenu />
                     <button
                         type="button"
-                        className="cursor-pointer rounded-full bg-white px-6 py-2 text-base font-semibold text-black"
+                        className="transition-background cursor-pointer rounded-full border border-[#353535] bg-[#111] px-8 py-2 text-base font-semibold text-white duration-200 hover:bg-[#353535]"
                     >
-                        Hire Me!
+                        <ShinyText text="Hire Me!" />
                     </button>
                 </div>
             </Container>

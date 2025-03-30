@@ -6,11 +6,9 @@ import { motion } from 'framer-motion'
 import { map } from 'lodash'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useRef } from 'react'
 
 export default function NavMenu() {
     const pathname = usePathname()
-    const activeRef = useRef<HTMLAnchorElement>(null)
 
     return (
         <nav>
@@ -25,6 +23,8 @@ export default function NavMenu() {
                         title={item.label}
                         className="group transition-color relative px-4 py-1.5 text-white duration-200 data-[active=true]:pointer-events-none data-[active=true]:text-black"
                         data-active={pathname === item.route}
+                        prefetch
+                        scroll
                     >
                         <span
                             className={cn(

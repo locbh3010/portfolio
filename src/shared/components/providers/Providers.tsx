@@ -1,6 +1,6 @@
 'use client'
 
-const Providers = ({ children }: React.PropsWithChildren) => {
+function Providers({ children }: React.PropsWithChildren) {
     return <div>{children}</div>
 }
 

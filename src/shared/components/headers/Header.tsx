@@ -1,14 +1,16 @@
 import Logo from '@/shared/assets/images/logo.webp'
 import { routes } from '@/shared/constants/routes'
+import cn from '@/shared/helpers/cn'
 import Image from 'next/image'
 import Link from 'next/link'
+import ShinyText from '../animations/text-animations/ShinyText'
 import { Container } from '../container'
 import NavMenu from './NavMenu'
-import ShinyText from '../animations/text-animations/ShinyText'
+import type { HeaderProps } from './types'
 
-export default function Header() {
+export default function Header({ className }: HeaderProps) {
     return (
-        <header className="flex-center-y h-[120px]">
+        <header className={cn('flex-center-y h-[120px]', className)}>
             <Container className="flex-center-between">
                 {/* logo */}
                 <Link

@@ -6,8 +6,10 @@ import { motion } from 'framer-motion'
 import { map } from 'lodash'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useId } from 'react'
 
 export default function NavMenu() {
+    const id = useId()
     const pathname = usePathname()
 
     return (
@@ -35,7 +37,7 @@ export default function NavMenu() {
 
                         {pathname === item.route && (
                             <motion.span
-                                layoutId="menu-indicator"
+                                layoutId={`menu-indicator-${id}`}
                                 className="absolute-full -z-10 rounded-full bg-white"
                                 transition={{
                                     type: 'spring',

@@ -1,19 +1,16 @@
-import { FollowCursor } from '../components/followCursor'
 import { Footer } from '../components/footers'
-import { Header } from '../components/headers'
+import { Header, HeadroomHeader } from '../components/headers'
 import { SmoothScroll } from '../components/smoothScroll'
 import type { DefaultLayoutProps } from './types'
 
 function DefaultLayout({ children }: DefaultLayoutProps) {
     return (
-        <>
-            <FollowCursor />
+        <SmoothScroll>
             <Header />
-            <SmoothScroll>
-                <main className="min-h-[500vh]">{children}</main>
-            </SmoothScroll>
+            <HeadroomHeader />
+            <main className="min-h-[500vh]">{children}</main>
             <Footer />
-        </>
+        </SmoothScroll>
     )
 }
 

@@ -1,7 +1,7 @@
 'use client'
 
 function Providers({ children }: React.PropsWithChildren) {
-    return <>{children}</>
+    return <div>{children}</div>
 }
 
 export default Providers

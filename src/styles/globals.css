@@ -1,1 +1,48 @@
 @import 'tailwindcss';
+
+/* flex-box */
+@utility flex-center {
+    @apply flex items-center justify-center;
+}
+
+@utility flex-center-x {
+    @apply flex items-center justify-center;
+}
+
+@utility flex-center-y {
+    @apply flex items-center justify-center;
+}
+
+@utility flex-center-between {
+    @apply flex items-center justify-between;
+}
+
+/* Absolute */
+@utility absolute-center {
+    @apply flex-center absolute inset-0;
+}
+
+@utility absolute-center-x {
+    @apply absolute left-1/2 -translate-x-1/2;
+}
+
+@utility absolute-center-y {
+    @apply absolute top-1/2 -translate-y-1/2;
+}
+
+@utility absolute-full {
+    @apply absolute inset-0;
+}
+
+@theme {
+    --animate-shine: shine 5s linear infinite;
+
+    @keyframes shine {
+        0% {
+            background-position: 100%;
+        }
+        100% {
+            background-position: -100%;
+        }
+    }
+}

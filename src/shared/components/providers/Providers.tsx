@@ -1,7 +1,7 @@
 'use client'
 
-const Providers = ({ children }: React.PropsWithChildren) => {
-    return <div>{children}</div>
+function Providers({ children }: React.PropsWithChildren) {
+    return <>{children}</>
 }
 
 export default Providers

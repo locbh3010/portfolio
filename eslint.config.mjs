@@ -65,11 +65,12 @@ const eslintConfig = [
         rules: {
             // * react
             'react/boolean-prop-naming': 'error',
+            'react/jsx-props-no-spreading': 'off',
             'react/button-has-type': 'error',
             'react/default-props-match-prop-types': 'error',
             'react/destructuring-assignment': 'error',
             'react/display-name': 'error',
-            'react/forbid-component-props': 'error',
+            'react/forbid-component-props': 'off',
             'react/forbid-dom-props': 'error',
             'react/forbid-elements': 'error',
             'react/forbid-foreign-prop-types': 'error',
@@ -88,13 +89,12 @@ const eslintConfig = [
             'react/jsx-no-constructed-context-values': 'error',
             'react/jsx-no-duplicate-props': 'error',
             'react/jsx-no-leaked-render': 'error',
-            'react/jsx-no-literals': 'error',
+            'react/jsx-no-literals': 'off',
             'react/jsx-no-script-url': 'error',
             'react/jsx-no-target-blank': 'error',
             'react/jsx-no-undef': 'error',
             'react/jsx-no-useless-fragment': 'error',
             'react/jsx-pascal-case': 'error',
-            'react/jsx-props-no-spreading': 'error',
             'react/jsx-uses-react': 'error',
             'react/jsx-uses-vars': 'error',
             'react/no-access-state-in-setstate': 'error',
@@ -148,6 +148,7 @@ const eslintConfig = [
             'react-compiler/react-compiler': 'error',
 
             // * typescript
+            '@typescript-eslint/no-unsafe-assignment': 'off',
             '@typescript-eslint/consistent-type-imports': 'error',
             '@typescript-eslint/no-floating-promises': 'error',
 
@@ -180,7 +181,7 @@ const eslintConfig = [
             'func-name-matching': 'error',
             'max-nested-callbacks': ['error', 3],
             'max-params': ['error', 3],
-            'max-lines-per-function': ['error', 30],
+            'max-lines-per-function': ['error', 100],
             'max-lines': ['error', { max: 700, skipComments: true, skipBlankLines: true }],
             'max-depth': ['error', 4],
             'max-statements': ['error', 10],

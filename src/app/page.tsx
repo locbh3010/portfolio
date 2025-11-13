@@ -9,19 +9,19 @@ import Link from "next/link";
 
 const highlights = [
 	{
-		label: "Dòng code đã deploy",
+		label: "Lines of code deployed",
 		value: "2.4M+",
 	},
 	{
-		label: "Độ hài lòng của khách hàng",
+		label: "Client satisfaction",
 		value: "98%",
 	},
 	{
-		label: "Dự án thành công",
+		label: "Successful projects",
 		value: "35",
 	},
 	{
-		label: "Năm kinh nghiệm",
+		label: "Years of experience",
 		value: "6+",
 	},
 ];
@@ -77,33 +77,32 @@ const projects = [
 	{
 		name: "LumenFlow Design Platform",
 		description:
-			"Xây dựng một hệ thống design platform hợp nhất cho 14 squad, dùng Next.js App Router với UI động theo vai trò, tối ưu TTFB giảm 43%.",
+			"Built a unified design platform system for 14 squads, using Next.js App Router with role-based dynamic UI, optimizing TTFB by 43%.",
 		role: "Lead Front-end Engineer",
 		year: "2024",
 		image: "/projects/lumenflow.svg",
 		imageAlt:
-			"Giao diện dashboard design system với biểu đồ và component preview",
+			"Design system dashboard interface with charts and component preview",
 		stack: ["Next.js", "Turborepo", "Tailwind CSS", "Storybook", "GraphQL"],
 	},
 	{
 		name: "SkyRoute Travel Intelligence",
 		description:
-			"Triển khai dashboard dữ liệu thời gian thực với React Server Components và React Query, kết nối 27 API khác nhau, đạt Lighthouse 95+.",
+			"Implemented real-time data dashboard with React Server Components and React Query, connecting 27 different APIs, achieving Lighthouse 95+.",
 		role: "Senior Front-end",
 		year: "2023",
 		image: "/projects/skyroute.svg",
-		imageAlt:
-			"Bảng điều khiển dữ liệu du lịch với bản đồ và đường dẫn chuyến đi",
+		imageAlt: "Travel data dashboard with map and trip route visualization",
 		stack: ["React", "React Query", "D3.js", "Supabase", "Mapbox"],
 	},
 	{
 		name: "Aurora Commerce OS",
 		description:
-			"Thiết kế kiến trúc micro-frontend, chia sẻ design system và module thanh toán, giúp onboarding dev mới giảm còn 3 ngày.",
+			"Designed micro-frontend architecture, shared design system and payment module, reducing new developer onboarding to 3 days.",
 		role: "Tech Lead UI",
 		year: "2022",
 		image: "/projects/aurora.svg",
-		imageAlt: "Hệ thống thương mại điện tử với các module UI sáng tạo",
+		imageAlt: "E-commerce system with innovative UI modules",
 		stack: ["Next.js", "Module Federation", "Tailwind CSS", "Nx", "Playwright"],
 	},
 ];
@@ -113,19 +112,19 @@ const timelines = [
 		period: "2024 ↔ 2025",
 		title: "Principal Front-end Engineer · Nimbus Labs",
 		description:
-			"Dẫn dắt guild UI, triển khai Next.js 15 với React Compiler, tự động hóa E2E multi-tenant, giúp tăng tốc độ release lên 2 lần/tuần.",
+			"Led UI guild, implemented Next.js 15 with React Compiler, automated E2E multi-tenant testing, increasing release velocity to 2x per week.",
 	},
 	{
 		period: "2021 ↔ 2024",
 		title: "Senior Front-end Developer · Stellar Studio",
 		description:
-			"Đồng kiến tạo design system đa nền tảng, tích hợp Theme Editor real-time, chuẩn hóa codebase TypeScript và test coverage 92%.",
+			"Co-created cross-platform design system, integrated real-time Theme Editor, standardized TypeScript codebase with 92% test coverage.",
 	},
 	{
 		period: "2019 ↔ 2021",
 		title: "Front-end Engineer · Pixel Forge",
 		description:
-			"Tập trung vào performance, tối ưu bundle và lazy-hydration, xây dựng component library hỗ trợ 9 ngôn ngữ.",
+			"Focused on performance, optimized bundle and lazy-hydration, built component library supporting 9 languages.",
 	},
 ];
 
@@ -136,7 +135,7 @@ const contactItems = [
 		href: "mailto:hello@locbh.dev",
 	},
 	{
-		label: "Điện thoại",
+		label: "Phone",
 		value: "+84 911 123 456",
 		href: "tel:+84911123456",
 	},
@@ -151,8 +150,8 @@ const contactItems = [
 		href: "https://github.com/locbh",
 	},
 	{
-		label: "Địa điểm",
-		value: "TP. Hồ Chí Minh · Remote-friendly",
+		label: "Location",
+		value: "Ho Chi Minh City · Remote-friendly",
 	},
 ];
 
@@ -234,11 +233,7 @@ export default function Home() {
 
 	const handleSpotlightMove = useCallback(
 		(event: MouseEvent<HTMLElement>) => {
-			setSpotlightPosition(
-				event.currentTarget,
-				event.clientX,
-				event.clientY
-			);
+			setSpotlightPosition(event.currentTarget, event.clientX, event.clientY);
 		},
 		[setSpotlightPosition]
 	);
@@ -255,11 +250,7 @@ export default function Home() {
 			const touch = event.touches[0];
 			if (!touch) return;
 
-			setSpotlightPosition(
-				event.currentTarget,
-				touch.clientX,
-				touch.clientY
-			);
+			setSpotlightPosition(event.currentTarget, touch.clientX, touch.clientY);
 		},
 		[setSpotlightPosition]
 	);
@@ -444,14 +435,14 @@ export default function Home() {
 							Principal Front-end · Next.js Specialist
 						</p>
 						<h1 className="font-heading text-3xl leading-tight font-semibold text-white sm:text-4xl md:text-5xl lg:text-6xl">
-							Tôi là Bùi Hữu Lộc (locbh) — biến ý tưởng thành trải nghiệm web
-							đẳng cấp, mượt mà và có tác động.
+							I&apos;m Bùi Hữu Lộc (locbh) — transforming ideas into premium,
+							smooth, and impactful web experiences.
 						</h1>
 						<p className="text-base text-slate-300 sm:text-lg">
-							Là Principal Front-end Engineer tập trung vào Next.js và React,
-							tôi kết hợp product mindset, kiến trúc Design System và tình yêu
-							dành cho UX để mang lại giá trị thật cho doanh nghiệp. Ưu tiên
-							performance, accessibility và khả năng mở rộng lâu dài.
+							As a Principal Front-end Engineer focused on Next.js and React, I
+							combine product mindset, Design System architecture, and a passion
+							for UX to deliver real business value. Prioritizing performance,
+							accessibility, and long-term scalability.
 						</p>
 						<div className="flex flex-wrap justify-start gap-2 text-sm text-slate-300 sm:justify-center sm:gap-3">
 							<span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
@@ -469,13 +460,13 @@ export default function Home() {
 								href="#projects"
 								className="inline-flex items-center justify-center rounded-full bg-fuchsia-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-fuchsia-400"
 							>
-								Xem dự án tiêu biểu
+								View featured projects
 							</Link>
 							<Link
 								href="#contact"
 								className="inline-flex items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-fuchsia-500 hover:text-white"
 							>
-								Đặt lịch tư vấn nhanh
+								Schedule quick consultation
 							</Link>
 						</div>
 					</div>
@@ -522,13 +513,13 @@ export default function Home() {
 								Skill Radar
 							</p>
 							<h2 className="text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-								Bộ kỹ năng nâng tầm sản phẩm
+								Skills that elevate products
 							</h2>
 						</div>
 						<p className="max-w-xl text-sm text-slate-300 sm:text-base">
-							Tôi biến knowledge thành quy trình thực chiến: từ dựng foundation,
-							build component scale đến đo lường kết quả. Không chỉ code, mà còn
-							giúp đội ngũ cùng phát triển.
+							I transform knowledge into battle-tested processes: from building
+							foundations, scaling components to measuring outcomes. Not just
+							coding, but helping teams grow together.
 						</p>
 					</div>
 
@@ -575,13 +566,13 @@ export default function Home() {
 								Featured Project Stories
 							</p>
 							<h2 className="text-2xl font-semibold text-white sm:text-3xl lg:text-4xl">
-								Những sản phẩm để đời tôi tự hào
+								Products I&apos;m proud to have built
 							</h2>
 						</div>
 						<p className="max-w-xl text-sm text-slate-200 sm:text-[0.95rem]">
-							Mỗi dự án là một bài toán khác nhau: đa nền tảng, real-time,
-							multi-tenant hay chuyên sâu về UX. Điểm chung: đều deliver đúng
-							hạn với chất lượng vượt mong đợi.
+							Each project is a different challenge: cross-platform, real-time,
+							multi-tenant, or UX-focused. Common thread: all delivered on time
+							with quality that exceeds expectations.
 						</p>
 					</div>
 
@@ -608,19 +599,19 @@ export default function Home() {
 							Career Timeline
 						</p>
 						<h2 className="text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-							Hành trình nâng cấp kỹ năng liên tục
+							Journey of continuous skill elevation
 						</h2>
 						<p className="text-sm text-slate-300 sm:text-[0.95rem]">
-							Tôi tạo ảnh hưởng không chỉ bằng dòng code, mà còn bằng cách xây
-							dựng quy trình, chia sẻ kiến thức và thúc đẩy đội ngũ đi nhanh hơn
-							với chất lượng cao hơn.
+							I create impact not just through code, but by building processes,
+							sharing knowledge, and empowering teams to move faster with higher
+							quality.
 						</p>
 						<div className="space-y-4 sm:space-y-5 md:space-y-6 md:border-l md:border-white/10 md:pl-6">
 							{timelines.map(item => (
 								<div key={item.title} className="relative md:pl-6">
 									<span className="absolute top-5 -left-3 hidden h-2.5 w-2.5 rounded-full bg-fuchsia-400 md:block" />
 									<div
-										className="spotlight-card group space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-1.5 hover:border-fuchsia-500/60 hover:shadow-lg hover:shadow-fuchsia-500/10 md:rounded-none md:border-0 md:bg-transparent md:p-0"
+										className="spotlight-card group transform-gpu space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1.5 hover:border-fuchsia-500/60 hover:shadow-lg hover:shadow-fuchsia-500/10 md:rounded-none md:border-0 md:bg-transparent md:p-0"
 										{...spotlightHandlers}
 									>
 										<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
@@ -640,7 +631,7 @@ export default function Home() {
 
 					<div className="flex flex-col gap-5 sm:gap-6">
 						<div
-							className="spotlight-card group rounded-3xl border border-white/10 bg-white/5 p-5 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
+							className="spotlight-card group transform-gpu rounded-3xl border border-white/10 bg-white/5 p-5 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
 							{...spotlightHandlers}
 						>
 							<h3 className="text-[0.75rem] font-semibold tracking-[0.25em] text-slate-300 uppercase sm:text-sm">
@@ -648,32 +639,33 @@ export default function Home() {
 							</h3>
 							<ul className="mt-3 space-y-3 text-sm text-slate-200 sm:mt-4 sm:space-y-4">
 								<li className="leading-relaxed">
-									<span className="mr-2 text-fuchsia-300">•</span>Tối ưu Core
-									Web Vitals cho sản phẩm multi-tenant, tăng 23% conversion.
+									<span className="mr-2 text-fuchsia-300">•</span>Optimized Core
+									Web Vitals for multi-tenant product, increased conversion by
+									23%.
 								</li>
 								<li className="leading-relaxed">
-									<span className="mr-2 text-fuchsia-300">•</span>Rút ngắn thời
-									gian build release từ 18 phút xuống còn 7 phút nhờ Turborepo &
+									<span className="mr-2 text-fuchsia-300">•</span>Reduced build
+									release time from 18 minutes to 7 minutes using Turborepo &
 									distributed caching.
 								</li>
 								<li className="leading-relaxed">
-									<span className="mr-2 text-fuchsia-300">•</span>Tạo chương
-									trình mentorship nội bộ, nâng cấp kỹ năng UI cho 12 developer
-									chỉ trong 3 tháng.
+									<span className="mr-2 text-fuchsia-300">•</span>Created
+									internal mentorship program, upgraded UI skills for 12
+									developers in just 3 months.
 								</li>
 							</ul>
 						</div>
 						<div
-							className="spotlight-card group rounded-3xl border border-white/10 bg-slate-950/60 p-5 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
+							className="spotlight-card group transform-gpu rounded-3xl border border-white/10 bg-slate-950/60 p-5 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
 							{...spotlightHandlers}
 						>
 							<h3 className="text-[0.75rem] font-semibold tracking-[0.25em] text-slate-300 uppercase sm:text-sm">
-								Sáng tạo khác biệt
+								Creative differentiation
 							</h3>
 							<p className="mt-3 text-sm text-slate-300 sm:mt-4 sm:text-[0.95rem]">
-								Tôi yêu thích thử nghiệm công nghệ mới như React Compiler,
-								Generative UI và các workflow GitHub Copilot để nâng cao tốc độ
-								phát triển mà vẫn đảm bảo chất lượng.
+								I love experimenting with new technologies like React Compiler,
+								Generative UI, and GitHub Copilot workflows to accelerate
+								development while maintaining quality.
 							</p>
 						</div>
 					</div>
@@ -691,11 +683,11 @@ export default function Home() {
 							Testimonials
 						</p>
 						<h2 className="text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-							Được tin tưởng bởi team toàn cầu
+							Trusted by global teams
 						</h2>
 						<p className="text-sm text-slate-300 sm:text-[0.95rem]">
-							Đồng đội mô tả tôi là người kết nối giữa business, thiết kế và
-							engineering — giúp đội ngũ tập trung vào outcome thay vì output.
+							Colleagues describe me as a bridge between business, design, and
+							engineering — helping teams focus on outcomes rather than outputs.
 						</p>
 					</div>
 					<div className="grid gap-4 sm:gap-6 md:grid-cols-2">
@@ -706,9 +698,9 @@ export default function Home() {
 							{...spotlightHandlers}
 						>
 							<p className="text-sm text-slate-200 sm:text-[0.95rem]">
-								“Lộc mang đến mindset sản phẩm sắc bén và khả năng biến mockup
-								phức tạp thành UI sống động, performance cao trong thời gian
-								đáng kinh ngạc.”
+								&ldquo;Loc brings sharp product mindset and the ability to
+								transform complex mockups into vibrant, high-performance UI in
+								remarkably short time.&rdquo;
 							</p>
 							<footer className="mt-auto text-[0.75rem] text-slate-400 sm:text-xs">
 								Quang Tran · VP of Product, Nimbus Labs
@@ -721,9 +713,9 @@ export default function Home() {
 							{...spotlightHandlers}
 						>
 							<p className="text-sm text-slate-200 sm:text-[0.95rem]">
-								“Khả năng dẫn dắt guild front-end giúp chúng tôi chuẩn hóa code
-								base, giảm 40% bug do regression. Lộc luôn đi đầu trong việc
-								chia sẻ kiến thức.”
+								&ldquo;His ability to lead the front-end guild helped us
+								standardize our codebase, reducing regression bugs by 40%. Loc
+								is always at the forefront of knowledge sharing.&rdquo;
 							</p>
 							<footer className="mt-auto text-[0.75rem] text-slate-400 sm:text-xs">
 								Thao Le · Engineering Manager, Stellar Studio
@@ -744,61 +736,61 @@ export default function Home() {
 							Workflow
 						</p>
 						<h2 className="text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-							Quy trình cộng tác từng bước rõ ràng
+							Clear step-by-step collaboration process
 						</h2>
 						<p className="text-sm text-slate-300 sm:text-[0.95rem]">
-							Tôi tin rằng sản phẩm tuyệt vời được tạo nên từ sự hợp tác thân
-							thiện và minh bạch. Đây là cách tôi làm việc với đối tác và đội
-							ngũ.
+							I believe great products are built through friendly and
+							transparent collaboration. This is how I work with partners and
+							teams.
 						</p>
 					</div>
 					<div className="grid gap-3 text-sm text-slate-200 sm:gap-4">
 						<div
-							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							className="spotlight-card group transform-gpu rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
 							{...spotlightHandlers}
 						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								01 · Immersion
 							</p>
 							<p className="mt-2 leading-relaxed">
-								Nghiên cứu business, persona, journey và constraint kỹ thuật để
-								cùng chốt mục tiêu rõ ràng.
+								Research business, personas, user journeys, and technical
+								constraints to align on clear objectives together.
 							</p>
 						</div>
 						<div
-							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							className="spotlight-card group transform-gpu rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
 							{...spotlightHandlers}
 						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								02 · Blueprint
 							</p>
 							<p className="mt-2 leading-relaxed">
-								Thiết kế kiến trúc front-end, define contract API, xây dựng
-								component plan và test strategy.
+								Design front-end architecture, define API contracts, build
+								component plans and test strategy.
 							</p>
 						</div>
 						<div
-							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							className="spotlight-card group transform-gpu rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
 							{...spotlightHandlers}
 						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								03 · Build & Iterate
 							</p>
 							<p className="mt-2 leading-relaxed">
-								Code sạch, review kỹ, pair programming và liên tục đo lường
-								performance để đảm bảo chất lượng.
+								Clean code, thorough reviews, pair programming, and continuous
+								performance monitoring to ensure quality.
 							</p>
 						</div>
 						<div
-							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							className="spotlight-card group transform-gpu rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
 							{...spotlightHandlers}
 						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								04 · Launch & Scale
 							</p>
 							<p className="mt-2 leading-relaxed">
-								Deploy tự tin, monitor liên tục và optimize dựa trên dữ liệu
-								thực tế của người dùng.
+								Deploy with confidence, monitor continuously, and optimize based
+								on real user data.
 							</p>
 						</div>
 					</div>
@@ -818,24 +810,25 @@ export default function Home() {
 								Contact
 							</p>
 							<h2 className="text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-								Cùng tạo ra sản phẩm đáng nhớ
+								Let&apos;s create memorable products together
 							</h2>
 							<p className="text-sm text-slate-300 sm:text-[0.95rem]">
-								Mở lòng với cơ hội freelance, project ngắn hạn hoặc hợp tác dài
-								hơi. Tôi ưu tiên những dự án tạo tác động lớn đến người dùng.
+								Open to freelance opportunities, short-term projects, or
+								long-term collaborations. I prioritize projects that create
+								significant impact for users.
 							</p>
 							<Link
 								href="mailto:hello@locbh.dev"
 								className="inline-flex items-center gap-2 rounded-full bg-fuchsia-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-fuchsia-400 sm:px-6"
 							>
-								Gửi email ngay
+								Send email now
 							</Link>
 						</div>
 						<div className="grid gap-3 text-sm text-slate-200 sm:gap-4 md:grid-cols-2">
 							{contactItems.map(item => (
 								<div
 									key={item.label}
-									className="spotlight-card group rounded-2xl border border-white/10 bg-slate-950/60 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+									className="spotlight-card group transform-gpu rounded-2xl border border-white/10 bg-slate-950/60 p-4 transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
 									{...spotlightHandlers}
 								>
 									<p className="text-[0.7rem] tracking-[0.25em] text-slate-400 uppercase sm:text-xs">

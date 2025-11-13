@@ -19,7 +19,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Bùi Hữu Lộc (locbh) · Principal Front-end Engineer",
   description:
-    "Portfolio của Bùi Hữu Lộc (locbh) – Principal Front-end Engineer chuyên về Next.js, React và kiến trúc Design System, tập trung vào hiệu năng và trải nghiệm người dùng.",
+    "Portfolio of Bùi Hữu Lộc (locbh) – Principal Front-end Engineer specializing in Next.js, React, and Design System architecture, focused on performance and user experience.",
   keywords: [
     "Bùi Hữu Lộc",
     "locbh",
@@ -33,16 +33,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bùi Hữu Lộc (locbh) · Principal Front-end Engineer",
     description:
-      "Kết nối với locbh để xây dựng sản phẩm web hiệu năng cao, trải nghiệm xuất sắc và kiến trúc UI bền vững.",
+      "Connect with locbh to build high-performance web products, excellent experiences, and sustainable UI architecture.",
     type: "website",
     url: "https://locbh.dev",
-    locale: "vi_VN",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Bùi Hữu Lộc (locbh) · Principal Front-end Engineer",
     description:
-      "Kỹ sư front-end dẫn dắt các team Next.js và React với trọng tâm performance, accessibility và product mindset.",
+      "Front-end engineer leading Next.js and React teams with focus on performance, accessibility, and product mindset.",
   },
   alternates: {
     canonical: "https://locbh.dev",

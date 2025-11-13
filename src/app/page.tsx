@@ -109,49 +109,38 @@ const projects = [
 
 const timelines = [
 	{
-		period: "2024 ↔ 2025",
-		title: "Principal Front-end Engineer · Nimbus Labs",
+		period: "2023 ↔ 2025",
+		title: "Senior Developer · Middle Developer",
 		description:
-			"Led UI guild, implemented Next.js 15 with React Compiler, automated E2E multi-tenant testing, increasing release velocity to 2x per week.",
+			"Advanced work focusing on SEO, React.js, performance coaching, and UI/UX improvements. Mainly worked on projects including HR management, chat apps, ecommerce, hotel management, and booking systems.",
 	},
 	{
-		period: "2021 ↔ 2024",
-		title: "Senior Front-end Developer · Stellar Studio",
+		period: "2022 ↔ 2023",
+		title: "UI/UX Designer & Front-end Developer Intern (Fresher)",
 		description:
-			"Co-created cross-platform design system, integrated real-time Theme Editor, standardized TypeScript codebase with 92% test coverage.",
-	},
-	{
-		period: "2019 ↔ 2021",
-		title: "Front-end Engineer · Pixel Forge",
-		description:
-			"Focused on performance, optimized bundle and lazy-hydration, built component library supporting 9 languages.",
+			"Worked simultaneously on UI/UX design and front-end development. Main focus on React.js, working on projects such as HR management, task management, and ecommerce platforms.",
 	},
 ];
 
 const contactItems = [
 	{
 		label: "Email",
-		value: "hello@locbh.dev",
-		href: "mailto:hello@locbh.dev",
+		value: "locbh3010@gmail.com",
+		href: "mailto:locbh3010@gmail.com",
 	},
 	{
 		label: "Phone",
-		value: "+84 911 123 456",
-		href: "tel:+84911123456",
-	},
-	{
-		label: "LinkedIn",
-		value: "linkedin.com/in/locbh",
-		href: "https://www.linkedin.com/in/locbh",
+		value: "0356454288",
+		href: "tel:+840356454288",
 	},
 	{
 		label: "Github",
-		value: "github.com/locbh",
-		href: "https://github.com/locbh",
+		value: "locbh3010",
+		href: "https://github.com/locbh3010",
 	},
 	{
 		label: "Location",
-		value: "Ho Chi Minh City · Remote-friendly",
+		value: "Ho Chi Minh City",
 	},
 ];
 
@@ -422,7 +411,7 @@ export default function Home() {
 				</div>
 			</header>
 
-			<main className="relative mx-auto flex max-w-6xl flex-col gap-16 px-4 py-16 sm:gap-20 sm:px-6 sm:py-20 lg:gap-32 lg:px-8 lg:py-28">
+			<main className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:gap-10 sm:px-6 sm:py-16 lg:gap-12 lg:px-8 lg:py-20">
 				<motion.section
 					id="about"
 					variants={fadeInUp}
@@ -639,19 +628,20 @@ export default function Home() {
 							</h3>
 							<ul className="mt-3 space-y-3 text-sm text-slate-200 sm:mt-4 sm:space-y-4">
 								<li className="leading-relaxed">
-									<span className="mr-2 text-fuchsia-300">•</span>Optimized Core
-									Web Vitals for multi-tenant product, increased conversion by
-									23%.
+									<span className="mr-2 text-fuchsia-300">•</span>Improved SEO
+									performance and search rankings for multiple ecommerce and
+									booking platforms, increasing organic traffic by 30%+.
 								</li>
 								<li className="leading-relaxed">
-									<span className="mr-2 text-fuchsia-300">•</span>Reduced build
-									release time from 18 minutes to 7 minutes using Turborepo &
-									distributed caching.
+									<span className="mr-2 text-fuchsia-300">•</span>Coached team
+									on React.js best practices and performance optimization,
+									reducing page load times by 40% across HR and hotel management
+									systems.
 								</li>
 								<li className="leading-relaxed">
-									<span className="mr-2 text-fuchsia-300">•</span>Created
-									internal mentorship program, upgraded UI skills for 12
-									developers in just 3 months.
+									<span className="mr-2 text-fuchsia-300">•</span>Designed and
+									developed UI/UX improvements for chat apps and task management
+									systems, enhancing user engagement and workflow efficiency.
 								</li>
 							</ul>
 						</div>
@@ -663,64 +653,13 @@ export default function Home() {
 								Creative differentiation
 							</h3>
 							<p className="mt-3 text-sm text-slate-300 sm:mt-4 sm:text-[0.95rem]">
-								I love experimenting with new technologies like React Compiler,
-								Generative UI, and GitHub Copilot workflows to accelerate
-								development while maintaining quality.
+								I bring a unique perspective by combining UI/UX design skills
+								with front-end development expertise. This dual approach allows
+								me to create seamless user experiences from concept to
+								implementation, ensuring both visual appeal and technical
+								excellence in every project.
 							</p>
 						</div>
-					</div>
-				</motion.section>
-
-				<motion.section
-					className="grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 md:grid-cols-[0.75fr_1.25fr] lg:p-10"
-					variants={fadeInUp}
-					initial="initial"
-					whileInView="animate"
-					viewport={{ once: true, amount: 0.2 }}
-				>
-					<div className="space-y-3 sm:space-y-4">
-						<p className="text-[0.7rem] font-semibold tracking-[0.25em] text-slate-300 uppercase sm:text-xs">
-							Testimonials
-						</p>
-						<h2 className="text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-							Trusted by global teams
-						</h2>
-						<p className="text-sm text-slate-300 sm:text-[0.95rem]">
-							Colleagues describe me as a bridge between business, design, and
-							engineering — helping teams focus on outcomes rather than outputs.
-						</p>
-					</div>
-					<div className="grid gap-4 sm:gap-6 md:grid-cols-2">
-						<motion.blockquote
-							className="spotlight-card group flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition hover:-translate-y-3 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
-							whileHover={{ translateY: -12 }}
-							transition={{ type: "spring", stiffness: 240, damping: 20 }}
-							{...spotlightHandlers}
-						>
-							<p className="text-sm text-slate-200 sm:text-[0.95rem]">
-								&ldquo;Loc brings sharp product mindset and the ability to
-								transform complex mockups into vibrant, high-performance UI in
-								remarkably short time.&rdquo;
-							</p>
-							<footer className="mt-auto text-[0.75rem] text-slate-400 sm:text-xs">
-								Quang Tran · VP of Product, Nimbus Labs
-							</footer>
-						</motion.blockquote>
-						<motion.blockquote
-							className="spotlight-card group flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition hover:-translate-y-3 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
-							whileHover={{ translateY: -12 }}
-							transition={{ type: "spring", stiffness: 240, damping: 20 }}
-							{...spotlightHandlers}
-						>
-							<p className="text-sm text-slate-200 sm:text-[0.95rem]">
-								&ldquo;His ability to lead the front-end guild helped us
-								standardize our codebase, reducing regression bugs by 40%. Loc
-								is always at the forefront of knowledge sharing.&rdquo;
-							</p>
-							<footer className="mt-auto text-[0.75rem] text-slate-400 sm:text-xs">
-								Thao Le · Engineering Manager, Stellar Studio
-							</footer>
-						</motion.blockquote>
 					</div>
 				</motion.section>
 

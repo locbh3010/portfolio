@@ -1,7 +1,7 @@
 "use client";
 
-import type { MouseEvent } from "react";
-import { useCallback, useEffect, useState } from "react";
+import type { MouseEvent, TouchEvent } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { motion, type Transition, type Variants } from "framer-motion";
 import Image from "next/image";
@@ -215,19 +215,76 @@ export default function Home() {
 		return () => observer.disconnect();
 	}, []);
 
-	const handleSpotlightMove = useCallback((event: MouseEvent<HTMLElement>) => {
-		const bounds = event.currentTarget.getBoundingClientRect();
-		const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-		const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+	const setSpotlightPosition = useCallback(
+		(element: HTMLElement, clientX: number, clientY: number) => {
+			const bounds = element.getBoundingClientRect();
+			const x = ((clientX - bounds.left) / bounds.width) * 100;
+			const y = ((clientY - bounds.top) / bounds.height) * 100;
 
-		event.currentTarget.style.setProperty("--spotlight-x", `${x}%`);
-		event.currentTarget.style.setProperty("--spotlight-y", `${y}%`);
+			element.style.setProperty("--spotlight-x", `${x}%`);
+			element.style.setProperty("--spotlight-y", `${y}%`);
+		},
+		[]
+	);
+
+	const resetSpotlight = useCallback((element: HTMLElement) => {
+		element.style.removeProperty("--spotlight-x");
+		element.style.removeProperty("--spotlight-y");
 	}, []);
 
-	const handleSpotlightLeave = useCallback((event: MouseEvent<HTMLElement>) => {
-		event.currentTarget.style.removeProperty("--spotlight-x");
-		event.currentTarget.style.removeProperty("--spotlight-y");
-	}, []);
+	const handleSpotlightMove = useCallback(
+		(event: MouseEvent<HTMLElement>) => {
+			setSpotlightPosition(
+				event.currentTarget,
+				event.clientX,
+				event.clientY
+			);
+		},
+		[setSpotlightPosition]
+	);
+
+	const handleSpotlightLeave = useCallback(
+		(event: MouseEvent<HTMLElement>) => {
+			resetSpotlight(event.currentTarget);
+		},
+		[resetSpotlight]
+	);
+
+	const handleSpotlightTouchMove = useCallback(
+		(event: TouchEvent<HTMLElement>) => {
+			const touch = event.touches[0];
+			if (!touch) return;
+
+			setSpotlightPosition(
+				event.currentTarget,
+				touch.clientX,
+				touch.clientY
+			);
+		},
+		[setSpotlightPosition]
+	);
+
+	const handleSpotlightTouchEnd = useCallback(
+		(event: TouchEvent<HTMLElement>) => {
+			resetSpotlight(event.currentTarget);
+		},
+		[resetSpotlight]
+	);
+
+	const spotlightHandlers = useMemo(
+		() => ({
+			onMouseMove: handleSpotlightMove,
+			onMouseLeave: handleSpotlightLeave,
+			onTouchMove: handleSpotlightTouchMove,
+			onTouchEnd: handleSpotlightTouchEnd,
+		}),
+		[
+			handleSpotlightMove,
+			handleSpotlightLeave,
+			handleSpotlightTouchMove,
+			handleSpotlightTouchEnd,
+		]
+	);
 
 	const renderProjectCard = (
 		project: (typeof projects)[number],
@@ -248,23 +305,7 @@ export default function Home() {
 			variants={fadeInUp}
 			whileHover={hoverShift ? { translateY: -8 } : undefined}
 			transition={{ type: "spring", stiffness: 240, damping: 18 }}
-			onMouseMove={handleSpotlightMove}
-			onMouseLeave={handleSpotlightLeave}
-			onTouchMove={event => {
-				const touch = event.touches[0];
-				if (!touch) return;
-
-				const bounds = event.currentTarget.getBoundingClientRect();
-				const x = ((touch.clientX - bounds.left) / bounds.width) * 100;
-				const y = ((touch.clientY - bounds.top) / bounds.height) * 100;
-
-				event.currentTarget.style.setProperty("--spotlight-x", `${x}%`);
-				event.currentTarget.style.setProperty("--spotlight-y", `${y}%`);
-			}}
-			onTouchEnd={event => {
-				event.currentTarget.style.removeProperty("--spotlight-x");
-				event.currentTarget.style.removeProperty("--spotlight-y");
-			}}
+			{...spotlightHandlers}
 		>
 			<div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:aspect-5/3">
 				<Image
@@ -452,9 +493,10 @@ export default function Home() {
 						<motion.div
 							key={item.label}
 							variants={fadeInUp}
-							className="rounded-3xl border border-white/10 bg-white/5 p-5 text-left shadow-lg shadow-slate-900/40 sm:text-center lg:p-6"
-							whileHover={{ scale: 1.04, translateY: -4 }}
+							className="spotlight-card group rounded-3xl border border-white/10 bg-white/5 p-5 text-left shadow-lg shadow-slate-900/40 transition hover:border-fuchsia-500/60 hover:shadow-fuchsia-500/10 sm:text-center lg:p-6"
+							whileHover={{ scale: 1.02, translateY: -6 }}
 							transition={{ type: "spring", stiffness: 220, damping: 16 }}
+							{...spotlightHandlers}
 						>
 							<p className="text-[0.7rem] font-semibold tracking-[0.25em] text-slate-400 uppercase">
 								{item.label}
@@ -495,9 +537,10 @@ export default function Home() {
 							<motion.div
 								key={group.title}
 								variants={fadeInUp}
-								className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-linear-to-br from-white/10 via-white/5 to-transparent p-6 sm:p-8"
-								whileHover={{ translateY: -6 }}
+								className="spotlight-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-linear-to-br from-white/10 via-white/5 to-transparent p-6 transition hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-8"
+								whileHover={{ translateY: -8 }}
 								transition={{ type: "spring", stiffness: 260, damping: 22 }}
+								{...spotlightHandlers}
 							>
 								<h3 className="text-base font-semibold text-white sm:text-lg">
 									{group.title}
@@ -574,27 +617,32 @@ export default function Home() {
 						</p>
 						<div className="space-y-4 sm:space-y-5 md:space-y-6 md:border-l md:border-white/10 md:pl-6">
 							{timelines.map(item => (
-								<div
-									key={item.title}
-									className="relative space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:pl-6"
-								>
+								<div key={item.title} className="relative md:pl-6">
 									<span className="absolute top-5 -left-3 hidden h-2.5 w-2.5 rounded-full bg-fuchsia-400 md:block" />
-									<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
-										{item.period}
-									</p>
-									<h3 className="text-base font-semibold text-white sm:text-lg">
-										{item.title}
-									</h3>
-									<p className="text-sm text-slate-300 sm:text-[0.95rem]">
-										{item.description}
-									</p>
+									<div
+										className="spotlight-card group space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-1.5 hover:border-fuchsia-500/60 hover:shadow-lg hover:shadow-fuchsia-500/10 md:rounded-none md:border-0 md:bg-transparent md:p-0"
+										{...spotlightHandlers}
+									>
+										<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
+											{item.period}
+										</p>
+										<h3 className="text-base font-semibold text-white sm:text-lg">
+											{item.title}
+										</h3>
+										<p className="text-sm text-slate-300 sm:text-[0.95rem]">
+											{item.description}
+										</p>
+									</div>
 								</div>
 							))}
 						</div>
 					</div>
 
 					<div className="flex flex-col gap-5 sm:gap-6">
-						<div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-6">
+						<div
+							className="spotlight-card group rounded-3xl border border-white/10 bg-white/5 p-5 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
+							{...spotlightHandlers}
+						>
 							<h3 className="text-[0.75rem] font-semibold tracking-[0.25em] text-slate-300 uppercase sm:text-sm">
 								Impact Metrics
 							</h3>
@@ -615,7 +663,10 @@ export default function Home() {
 								</li>
 							</ul>
 						</div>
-						<div className="rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
+						<div
+							className="spotlight-card group rounded-3xl border border-white/10 bg-slate-950/60 p-5 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
+							{...spotlightHandlers}
+						>
 							<h3 className="text-[0.75rem] font-semibold tracking-[0.25em] text-slate-300 uppercase sm:text-sm">
 								Sáng tạo khác biệt
 							</h3>
@@ -648,7 +699,12 @@ export default function Home() {
 						</p>
 					</div>
 					<div className="grid gap-4 sm:gap-6 md:grid-cols-2">
-						<blockquote className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
+						<motion.blockquote
+							className="spotlight-card group flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition hover:-translate-y-3 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
+							whileHover={{ translateY: -12 }}
+							transition={{ type: "spring", stiffness: 240, damping: 20 }}
+							{...spotlightHandlers}
+						>
 							<p className="text-sm text-slate-200 sm:text-[0.95rem]">
 								“Lộc mang đến mindset sản phẩm sắc bén và khả năng biến mockup
 								phức tạp thành UI sống động, performance cao trong thời gian
@@ -657,8 +713,13 @@ export default function Home() {
 							<footer className="mt-auto text-[0.75rem] text-slate-400 sm:text-xs">
 								Quang Tran · VP of Product, Nimbus Labs
 							</footer>
-						</blockquote>
-						<blockquote className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
+						</motion.blockquote>
+						<motion.blockquote
+							className="spotlight-card group flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition hover:-translate-y-3 hover:border-fuchsia-500/60 hover:shadow-2xl hover:shadow-fuchsia-500/10 sm:p-6"
+							whileHover={{ translateY: -12 }}
+							transition={{ type: "spring", stiffness: 240, damping: 20 }}
+							{...spotlightHandlers}
+						>
 							<p className="text-sm text-slate-200 sm:text-[0.95rem]">
 								“Khả năng dẫn dắt guild front-end giúp chúng tôi chuẩn hóa code
 								base, giảm 40% bug do regression. Lộc luôn đi đầu trong việc
@@ -667,7 +728,7 @@ export default function Home() {
 							<footer className="mt-auto text-[0.75rem] text-slate-400 sm:text-xs">
 								Thao Le · Engineering Manager, Stellar Studio
 							</footer>
-						</blockquote>
+						</motion.blockquote>
 					</div>
 				</motion.section>
 
@@ -692,7 +753,10 @@ export default function Home() {
 						</p>
 					</div>
 					<div className="grid gap-3 text-sm text-slate-200 sm:gap-4">
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+						<div
+							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							{...spotlightHandlers}
+						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								01 · Immersion
 							</p>
@@ -701,7 +765,10 @@ export default function Home() {
 								cùng chốt mục tiêu rõ ràng.
 							</p>
 						</div>
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+						<div
+							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							{...spotlightHandlers}
+						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								02 · Blueprint
 							</p>
@@ -710,7 +777,10 @@ export default function Home() {
 								component plan và test strategy.
 							</p>
 						</div>
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+						<div
+							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							{...spotlightHandlers}
+						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								03 · Build & Iterate
 							</p>
@@ -719,7 +789,10 @@ export default function Home() {
 								performance để đảm bảo chất lượng.
 							</p>
 						</div>
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+						<div
+							className="spotlight-card group rounded-2xl border border-white/10 bg-white/5 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+							{...spotlightHandlers}
+						>
 							<p className="text-[0.7rem] tracking-[0.25em] text-fuchsia-300 uppercase sm:text-xs">
 								04 · Launch & Scale
 							</p>
@@ -762,7 +835,8 @@ export default function Home() {
 							{contactItems.map(item => (
 								<div
 									key={item.label}
-									className="rounded-2xl border border-white/10 bg-slate-950/60 p-4"
+									className="spotlight-card group rounded-2xl border border-white/10 bg-slate-950/60 p-4 transform-gpu transition hover:-translate-y-2 hover:border-fuchsia-500/60 hover:shadow-xl hover:shadow-fuchsia-500/10"
+									{...spotlightHandlers}
 								>
 									<p className="text-[0.7rem] tracking-[0.25em] text-slate-400 uppercase sm:text-xs">
 										{item.label}

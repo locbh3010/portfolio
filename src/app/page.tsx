@@ -3,8 +3,6 @@
 import type { MouseEvent } from "react";
 import { useCallback, useEffect, useState } from "react";
 
-import type { EmblaCarouselType } from "embla-carousel";
-import useEmblaCarousel from "embla-carousel-react";
 import { motion, type Transition, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -193,26 +191,6 @@ export default function Home() {
 	const [activeSection, setActiveSection] = useState<string>(
 		navItems[0]?.id ?? ""
 	);
-	const [emblaRef, emblaApi] = useEmblaCarousel({
-		align: "start",
-		containScroll: "trimSnaps",
-		loop: false,
-	});
-	const [canScrollPrev, setCanScrollPrev] = useState(false);
-	const [canScrollNext, setCanScrollNext] = useState(false);
-
-	const onSelect = useCallback((api: EmblaCarouselType) => {
-		setCanScrollPrev(api.canScrollPrev());
-		setCanScrollNext(api.canScrollNext());
-	}, []);
-
-	const scrollPrev = useCallback(() => {
-		emblaApi?.scrollPrev();
-	}, [emblaApi]);
-
-	const scrollNext = useCallback(() => {
-		emblaApi?.scrollNext();
-	}, [emblaApi]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -236,25 +214,6 @@ export default function Home() {
 
 		return () => observer.disconnect();
 	}, []);
-
-	useEffect(() => {
-		if (!emblaApi) {
-			return;
-		}
-
-		const handleSelect = () => {
-			onSelect(emblaApi);
-		};
-
-		handleSelect();
-		emblaApi.on("select", handleSelect);
-		emblaApi.on("reInit", handleSelect);
-
-		return () => {
-			emblaApi.off("select", handleSelect);
-			emblaApi.off("reInit", handleSelect);
-		};
-	}, [emblaApi, onSelect]);
 
 	const handleSpotlightMove = useCallback((event: MouseEvent<HTMLElement>) => {
 		const bounds = event.currentTarget.getBoundingClientRect();
@@ -583,75 +542,14 @@ export default function Home() {
 						</p>
 					</div>
 
-					<div className="grid gap-5 lg:hidden">
+					<motion.div
+						className="grid gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3"
+						variants={fadeInStagger}
+					>
 						{projects.map((project, index) =>
-							renderProjectCard(project, index, {
-								keySuffix: "stack",
-								hoverShift: false,
-							})
+							renderProjectCard(project, index)
 						)}
-					</div>
-
-					<div className="relative hidden lg:block">
-						<div ref={emblaRef} className="overflow-hidden">
-							<div className="flex gap-6 pb-1">
-								{projects.map((project, index) =>
-									renderProjectCard(project, index, {
-										className: "flex-[0_0_70%] xl:flex-[0_0_32%]",
-										keySuffix: "carousel",
-									})
-								)}
-							</div>
-						</div>
-						<div className="pointer-events-none absolute inset-y-0 left-0 hidden w-24 bg-linear-to-r from-slate-950 via-slate-950/70 to-transparent xl:block" />
-						<div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-linear-to-l from-slate-950 via-slate-950/70 to-transparent xl:block" />
-						<div className="mt-8 flex justify-end gap-3">
-							<button
-								type="button"
-								onClick={scrollPrev}
-								disabled={!canScrollPrev}
-								className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition hover:border-fuchsia-500 hover:bg-fuchsia-500/20 disabled:cursor-not-allowed disabled:opacity-40"
-								aria-label="Xem dự án trước"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									fill="none"
-									className="h-5 w-5"
-								>
-									<path
-										d="m14.5 6.5-5 5 5 5"
-										stroke="currentColor"
-										strokeWidth="1.5"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
-							</button>
-							<button
-								type="button"
-								onClick={scrollNext}
-								disabled={!canScrollNext}
-								className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition hover:border-fuchsia-500 hover:bg-fuchsia-500/20 disabled:cursor-not-allowed disabled:opacity-40"
-								aria-label="Xem dự án tiếp theo"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									fill="none"
-									className="h-5 w-5"
-								>
-									<path
-										d="m9.5 6.5 5 5-5 5"
-										stroke="currentColor"
-										strokeWidth="1.5"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
-							</button>
-						</div>
-					</div>
+					</motion.div>
 				</motion.section>
 
 				<motion.section

@@ -1,0 +1,32 @@
+<svg width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyroute-bg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#061122"/>
+      <stop offset="60%" stop-color="#0f1c34"/>
+      <stop offset="100%" stop-color="#1f4c7f"/>
+    </linearGradient>
+    <radialGradient id="skyroute-glow" cx="70%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skyroute-path" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#bae6fd" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#e0f2fe" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#bae6fd" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" rx="32" fill="url(#skyroute-bg)"/>
+  <circle cx="440" cy="150" r="160" fill="url(#skyroute-glow)"/>
+  <path d="M60 260 Q170 140 280 220 T500 200 T580 150" stroke="url(#skyroute-path)" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <g opacity="0.35">
+    <polyline points="140,220 200,180 260,210 320,160 400,200 460,140 520,160" fill="rgba(59,130,246,0.15)" stroke="rgba(138,180,248,0.35)" stroke-width="2"/>
+    <circle cx="200" cy="180" r="10" fill="#e0f2fe"/>
+    <circle cx="320" cy="160" r="10" fill="#38bdf8"/>
+    <circle cx="460" cy="140" r="10" fill="#c4b5fd"/>
+  </g>
+  <rect x="120" y="120" width="180" height="120" rx="24" fill="rgba(15,23,42,0.55)" stroke="rgba(56,189,248,0.45)" stroke-width="2"/>
+  <rect x="150" y="150" width="120" height="18" rx="9" fill="#bae6fd" opacity="0.6"/>
+  <rect x="150" y="180" width="90" height="12" rx="6" fill="#c4b5fd" opacity="0.4"/>
+  <rect x="150" y="202" width="110" height="12" rx="6" fill="#38bdf8" opacity="0.35"/>
+</svg>
+
